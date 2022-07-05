@@ -5,16 +5,18 @@
     <title>To-do List made by jiwon</title>
   </head>
   <body>
-    <script src="./app.js"></script>
     <h1>To-do list</h1>
-    <input type="text" id="add" name="to-do">
-    <button type="button" onclick="add_todo();">add</button>
+    <input type="text" id="add" name="to-do" onkeydown="if(event.code==='Enter') add_todo()">
+    <button type="button" onclick="add_todo();">Add</button>
+    <h3>To do</h3>
     <ul id="list1">
        
     </ul>
     <hr>
+    <h3>Done</h3>
     <ul id="list2">
 
     </ul>
+    <script src="./app.js"></script>
   </body>
 </html>
