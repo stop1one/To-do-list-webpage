@@ -23,7 +23,7 @@ function add_list(todo, target_list, n) {
     var checkbox = document.createElement('button');
     checkbox.id = 'checkbox' + n;
     if (target_list === 'list1') checkbox.innerHTML = 'O';
-    else checkbox.innerHTML = 'X';
+    else checkbox.innerHTML = 'Cancel';
     list.appendChild(checkbox);
     checkbox.onclick = function(){check(n); };
     //Add to todoList
@@ -50,7 +50,7 @@ function check(n) {
     var check_value = document.getElementById('checkbox' + n).innerHTML;
     remove(n);
     var list = 'list2';
-    if (check_value === 'X') list = 'list1';
+    if (check_value === 'Cancel') list = 'list1';
     add_list(checked_todo.innerHTML, list, idx);
 }
 

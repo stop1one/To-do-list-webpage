@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>To-do list</h1>
-    <input type="text" id="add" name="to-do" onkeydown="if(event.code==='Enter') add_todo()">
+    <input type="text" id="add" name="to-do" onkeydown="if(event.code==='Enter' && event.isComposing===false) add_todo()">
     <button type="button" onclick="add_todo();">Add</button>
     <h3>To do</h3>
     <ul id="list1">
