@@ -13,12 +13,15 @@ function add_todo() {
 
 function add_list(todo, target_list, n) {
     var list = document.getElementById(target_list);
+    var newlist = document.createElement('div');
+    newlist.className = 'todos';
+    list.appendChild(newlist);
     //add remover
     var remover = document.createElement('button');
     remover.className = 'button remover';
     remover.id = 'remover' + n;
     remover.innerHTML = 'Del';
-    list.appendChild(remover);
+    newlist.appendChild(remover);
     remover.onclick = function(){remove(n); };
     //add checkbox
     var checkbox = document.createElement('button');
@@ -26,13 +29,13 @@ function add_list(todo, target_list, n) {
     checkbox.id = 'checkbox' + n;
     if (target_list === 'list1') checkbox.innerHTML = '✔';
     else checkbox.innerHTML = '✘';
-    list.appendChild(checkbox);
+    newlist.appendChild(checkbox);
     checkbox.onclick = function(){check(n); };
     //add new todo list
-    var newlist = document.createElement('span');
-    newlist.innerHTML = todo;
-    newlist.id = 'todo' + n;
-    list.appendChild(newlist);
+    var newtodo = document.createElement('span');
+    newtodo.innerHTML = todo;
+    newtodo.id = 'todo' + n;
+    newlist.appendChild(newtodo);
     //Add to todoList
     todoList.push([todo, target_list, n]);
     //Save to localStorage

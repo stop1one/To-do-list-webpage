@@ -7,11 +7,27 @@ span{
     margin-right: 10px;
 }
 
+.todos {
+    margin-bottom: 5px;
+}
+
 .button {
     transition-duration: 0.4s;
 }
 
+.add {
+    background-color: white; 
+    color: black; 
+    border: 1.5px solid #555555;
+}
+
+.add:hover {
+    background-color: #555555;
+    color: white;
+}
+
 .remover {
+    margin-right: 2px;
     background-color: white; 
     color: black; 
     border: 1.5px solid #f44336;
