@@ -5,27 +5,34 @@ const savedLists = 'saved_todos';
 function add_todo() {
     var newtodo = document.getElementById("add").value;
     if (newtodo) {
-        add_list(newtodo, 'list1', idx);
+        add_list(newtodo.trim(), 'list1', idx);
         document.getElementById("add").value = null;
     }
     else alert('Please input your to-do!');
 }
 
 function add_list(todo, target_list, n) {
-    console.log(todo, target_list, n);
     var list = document.getElementById(target_list);
-    var newlist = document.createElement('li');
-    newlist.innerHTML = todo;
-    newlist.id = 'todo' + n;
-    console.log(target_list);
-    list.appendChild(newlist);
+    //add remover
+    var remover = document.createElement('button');
+    remover.className = 'button remover';
+    remover.id = 'remover' + n;
+    remover.innerHTML = 'Del';
+    list.appendChild(remover);
+    remover.onclick = function(){remove(n); };
     //add checkbox
     var checkbox = document.createElement('button');
+    checkbox.className = 'button checkbox';
     checkbox.id = 'checkbox' + n;
-    if (target_list === 'list1') checkbox.innerHTML = 'O';
-    else checkbox.innerHTML = 'Cancel';
+    if (target_list === 'list1') checkbox.innerHTML = '✔';
+    else checkbox.innerHTML = '✘';
     list.appendChild(checkbox);
     checkbox.onclick = function(){check(n); };
+    //add new todo list
+    var newlist = document.createElement('span');
+    newlist.innerHTML = todo;
+    newlist.id = 'todo' + n;
+    list.appendChild(newlist);
     //Add to todoList
     todoList.push([todo, target_list, n]);
     //Save to localStorage
@@ -34,10 +41,13 @@ function add_list(todo, target_list, n) {
 }
 
 function remove(n) {
-    var removed_list = document.querySelector('#todo' + n);
+    var removed_todo = document.querySelector('#todo' + n);
     var removed_checkbox = document.querySelector('#checkbox' + n);
-    removed_list.parentNode.removeChild(removed_list);
-    removed_checkbox.parentNode.removeChild(removed_checkbox);
+    var removed_remover = document.querySelector('#remover' + n);
+    var removed_list = removed_todo.parentNode;
+    removed_list.removeChild(removed_todo);
+    removed_list.removeChild(removed_checkbox);
+    removed_list.removeChild(removed_remover);
     //remove todo in localStorage
     for (var i = 0; i < todoList.length; i++) {
         if (todoList[i][2] === n) todoList.splice(i, 1);
@@ -50,7 +60,7 @@ function check(n) {
     var check_value = document.getElementById('checkbox' + n).innerHTML;
     remove(n);
     var list = 'list2';
-    if (check_value === 'Cancel') list = 'list1';
+    if (check_value === '✘') list = 'list1';
     add_list(checked_todo.innerHTML, list, idx);
 }
 
@@ -61,7 +71,7 @@ function loadToStorage() {
         parsedLists.forEach(function(todo) {
             add_list(todo[0], todo[1], todo[2]);
         });
-        idx = parsedLists[parsedLists.length - 1][2] + 1;
+        if (parsedLists.length) idx = parsedLists[parsedLists.length - 1][2] + 1;
     }
 }
 

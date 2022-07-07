@@ -3,19 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>To-do List made by jiwon</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>To-do list</h1>
     <input type="text" id="add" name="to-do" onkeydown="if(event.code==='Enter' && event.isComposing===false) add_todo()">
     <button type="button" onclick="add_todo();">Add</button>
     <h3>To do</h3>
-    <ul id="list1">
+    <div id="list1">
        
-    </ul>
+    </div>
     <hr>
     <h3>Done</h3>
-    <ul id="list2">
-
+    <div id="list2">
+      
     </ul>
     <script src="./app.js"></script>
   </body>
